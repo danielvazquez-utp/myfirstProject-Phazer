@@ -5,7 +5,7 @@
 - Tener instalado Phazer Launcher https://phaser.io/download/phaser-launcher
 <img width="1895" height="979" alt="image" src="https://github.com/user-attachments/assets/549a3436-5dd1-4b30-b597-7b3cf5c7f02a" />
 <img width="1895" height="979" alt="image" src="https://github.com/user-attachments/assets/7c209456-c969-4124-bad9-6a7cc97682c2" />
-- Descargar la carpeta de *assets.zip* https://drive.google.com/file/d/1yB5er06krYFtuISioqmqRtw_4-DHLzwB/view?usp=sharing
+- Descargar la carpeta de *assets.zip* https://drive.google.com/file/d/1m22CDt9PY7RsNF_43NayvQMfnty1Rpvu/view?usp=sharing
 
 ## Paso 1. Crear un nuevo proyecto
 
