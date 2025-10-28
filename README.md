@@ -93,3 +93,8 @@ En el mismo archivo *Game.js*, se definen de la misma manera el comportamiento d
 - **hitBomb(player, bomb)**: Indica la manera en que termina el juego una vez que el jugador es tocado por una bomba.
 - **releaseBomb()**: Indica la manera en que una bomba es liberada
 - **update**: Es un ciclo que se ejecuta y lee los movimientos del jugador para ajustar su nueva posición conforme a las teclas presionadas por el usuario del videojuego.
+
+Una vez definidos los objetos y comportamientos de cada uno, ya se tiene listo un videojuego funcional como se muestra a contiuación:
+
+<img width="794" height="625" alt="image" src="https://github.com/user-attachments/assets/d4f5e0ae-8fa6-4022-b539-08a8e03bc451" />
+
