@@ -7,25 +7,28 @@ export class Game extends Phaser.Scene {
     }
 
     create() {
+       // Agrega un fondo de imagen a la escena
        this.add.image(400, 300, 'sky');
+       // Define un objeto de tipo estático para el piso
        this.platforms = this.physics.add.staticGroup();
+       // Define las dimensiones de los bloques 
        this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+       // Define las posiciones de otros bloques
        this.platforms.create(600, 400, 'ground');
        this.platforms.create(50, 250, 'ground');
-
        this.platforms.create(750, 220, 'ground');
 
-       // 🌟 Paso 2: Crear una instancia del sonido y pasársela al jugador
+       // Crea instancias de sonido a ocupar en movimientos del jugador y en el lanzamiento de una bomba
        this.sfxFootstep = this.sound.add('footstep', { volume: 0.2, loop: false });
        this.sfxBomby = this.sound.add('bomby', { volume: 0.5, loop: false });
 
-       // agregar un jugador a la escena
+       // Agrega un jugador a la escena
        this.player = new Player(this, 100, 450, this.sfxFootstep);
        // Efecto para que el jugador quede parado sobre la plataforma
        this.physics.add.collider(this.player, this.platforms);
        // Definir entradas del teclado para mover al jugador
        this.cursors = this.input.keyboard.createCursorKeys();
-
+        // Crea un grupo de estrellas a ocuparse en la escena
        this.stars = this.physics.add.group(
         {
             key: 'star',
@@ -36,16 +39,23 @@ export class Game extends Phaser.Scene {
                 stepX:70
             }
         });
-
+        // indica que las estrellas tendrán un pequeño rebote
         this.stars.children.iterate( child => {
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
         });
+        // Indique que las estrellas deben mantenerse sobre los bloques de piso
         this.physics.add.collider(this.stars, this.platforms);
+        // Indica que un evento será invocado cuando dos objetos se traslapen/ocupen el mismo espacio
         this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+        // Crea un marcador
         this.score = 0;
+        // Agrega el marcado a la pantalla en una posición y color determinado
         this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+        // Crea un objeto bomba
         this.bombs = this.physics.add.group();
+        // Indica que las bombas deben mantenerse sobre los bloques de piso
         this.physics.add.collider(this.bombs, this.platforms);
+        // Indica que un evento será invocado cuando el jugador y una bomba choquen/se toquen
         this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
     }
 
