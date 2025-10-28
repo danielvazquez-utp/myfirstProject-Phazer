@@ -46,3 +46,50 @@ Algunos archivos/carpetas importantes que hay que identificar son:
 - Cargar con contenido de la carpeta descargada *assets.zip* en la carpeta assets del proyecto (imagenes). Esto se puede hacer arrastrando desde el *explorador de archivos* hacia la carpeta *assets* en Phazer Launcher.
 <img width="1607" height="892" alt="image" src="https://github.com/user-attachments/assets/9f4866ef-e2ea-4a4b-b55e-d10e0dae01ac" />
 
+## Paso 4. Precarga de recursos del proyecto
+
+En este punto, el archivo *preloading.js* es quien se encarga de llevar a cabo la precarga de los recursos que serán empleados por el videojuego (imágenes y otros) y ademas les asocia un identificador (nombre) mediante el cual serán invocados en el proyecto. Por ello, hay que modificar el contenido del método *preload()* de la siguiente manera:
+
+<img width="626" height="368" alt="image" src="https://github.com/user-attachments/assets/04d00e8a-1f75-4a7d-8b02-ab0f51df413e" />
+
+## Paso 5. Agregando elementos a escena
+
+A partir de la carga de recursos, es posible comenzar a hacer uso de ellos dentro de una escena, concretamente en *Game.js*. Por ello, se pueden agregar tanto un fondo de imagen que simule el cielo, asi como bloques rellenos de simulen un piso como se muestra a continuación:
+
+<img width="653" height="333" alt="image" src="https://github.com/user-attachments/assets/e424a55b-fec0-4325-9e86-685053a6fe51" />
+
+En este punto también es posible agregar otros elementos como sonidos asociados a los movimientos del persona principal (jugador) o eventos, como el lanzamiento de una bomba del videojuego.
+
+<img width="900" height="213" alt="image" src="https://github.com/user-attachments/assets/237eb101-61e5-453a-b38d-3cd4e81446f5" />
+
+Lo cual se renderizará de la siguiente manera:
+
+<img width="923" height="722" alt="image" src="https://github.com/user-attachments/assets/3abb4b76-2f6c-45c2-806c-cffa2a40b960" />
+
+## Paso 6. Agregando al personaje
+
+Es necesario modificar la estructura del proyecto agregando una nueva carpeta dedntro de *src* para definir objetos adicionales que van a ser empleados en el videojuego (tales como un personaje). Por ello se crea dentro de la nueva carpeta (*gameObjects*) el archivo *Player.js* para definir sus características y comportamiento.
+
+<img width="328" height="312" alt="image" src="https://github.com/user-attachments/assets/b85dfe19-c7d8-4413-b389-522f0b5e9fe5" />
+
+Dicho archivo *Player.js* deberá contener la siguiente estructura general:
+
+<img width="527" height="443" alt="image" src="https://github.com/user-attachments/assets/3f367f17-b1b0-4407-a06b-5c7e68f8434b" />
+
+Donde:
+- **constructor()**: Se encarga de inicializar el objetito de tipo de Player.
+- **initAnimations()**: Se encarga de la inicialización de los movimientos que puede realizar el jugador.
+- **moveLeft(), moveRight(), idle(), jump()**: Contienen la definición de los movimientos del jugador.
+
+A la par de ello, en *Game.js* es necesario que dentro del método *Create()* se incluya un jugador que tendrá características como que no puede atravesar los bloques de piso, y el comportamiento dle jugador (movimientos).
+
+
+## Paso 7. Agregando estrellas y bombas
+
+Una vez definido al personaje y su comportamiento, ahora toca turno a los objetos que van a interactuar con el personaje, es decir, las estrellas (que recolectará el personaje) y las bombas que buscarán evitar que el personaje cumplá su misión. Estos objetos al igual que los anteriores, serán definidos en *Game.js* dentro del método *Create()*
+
+En el mismo archivo *Game.js*, se definen de la misma manera el comportamiento de cada uno de los objetos agregados en 3 diferentes métodos:
+- **collectStar(player, star)**: Indica la manera y lógica con la que el jugador recoge estrellas, suma puntos al score y lanza el evento que libera una bomba cuando cumple la recolección de un lote de 12 estrellas.
+- **hitBomb(player, bomb)**: Indica la manera en que termina el juego una vez que el jugador es tocado por una bomba.
+- **releaseBomb()**: Indica la manera en que una bomba es liberada
+- **update**: Es un ciclo que se ejecuta y lee los movimientos del jugador para ajustar su nueva posición conforme a las teclas presionadas por el usuario del videojuego.
